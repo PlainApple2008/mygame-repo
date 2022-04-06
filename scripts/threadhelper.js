@@ -1,3 +1,3 @@
-console.log('reading    threadhelper.js ');
+console.log('threadhelper.js start');
 
-console.log('end reading    threadhelper.js');
+console.log('threadhelper.js end');

@@ -1,3 +1,3 @@
-console.log('reading    main-debug.js ');
+console.log('main-debug.js start');
 
-console.log('end reading    main-debug.js');
+console.log('main-debug.js end');

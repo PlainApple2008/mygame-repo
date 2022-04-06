@@ -1,3 +1,3 @@
-console.log('reading    gamethread.js ');
+console.log('gamethread.js start');
 
-console.log('end reading    gamethread.js');
+console.log('gamethread.js end');

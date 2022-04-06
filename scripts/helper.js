@@ -1,3 +1,3 @@
-console.log('reading    helper.js ');
+console.log('helper.js start');
 
-console.log('end reading    helper.js');
+console.log('helper.js end');
