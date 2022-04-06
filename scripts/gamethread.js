@@ -1,8 +1,8 @@
 console.log('gamethread.js start');
 
 function run() {
-  focus('function run called');
- // document.getElementById('debug-focused-content').innerHTML = 'function run called';
+  focus(x);
+  x++;
   requestAnimationFrame(run);
 }
 
