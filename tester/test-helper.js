@@ -1,4 +1,14 @@
-console.log('threadhelper.js start');
+console.log('test-helper.js start');
+var tx1 = 0;
+var ty1 = 0;
+var tx2 = 0;
+var ty2 = 0;
+var t1a = false;
+var t2a = false;
+var tngb1 = false;
+var tngb2 = false;
+var tngb3 = false;
+
 function addHandler1(element) {
   element.ontouchstart = function(ev) {
     ev.preventDefault();
@@ -78,4 +88,5 @@ function touchInButton(element, tx, ty) {
   }
   return false;
 }
-console.log('threadhelper.js end');
+
+console.log('test-helper.js end');
