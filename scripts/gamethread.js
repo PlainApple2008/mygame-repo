@@ -1,8 +1,6 @@
 console.log('gamethread.js start');
 
 function run() {
-  focus(x);
-  x++;
   requestAnimationFrame(run);
 }
 
