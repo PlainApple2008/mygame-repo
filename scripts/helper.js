@@ -35,10 +35,10 @@ var tngb1 = false;
 var tngb2 = false;
 var tngb3 = false;
 
-var Player;
-var Ground;
-var Tree;
-var Axe;
+var player;
+var ground;
+var tree;
+var axe;
 
 var woodMined;
 var treeExists;

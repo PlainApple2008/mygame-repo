@@ -1,4 +1,5 @@
 console.log('threadhelper.js start');
+
 function addHandler1(element) {
   element.ontouchstart = function(ev) {
     ev.preventDefault();
@@ -77,5 +78,18 @@ function touchInButton(element, tx, ty) {
     return true;
   }
   return false;
+}
+
+function fillRect(entity) {
+  canvas.fillRect(entity.posx, entity.posy, entity.width, entity.height);
+}
+
+function setfillStyle(color) {
+  canvas.fillStyle = color;
+}
+
+function fillEntity(entity, color) {
+  setfillStyle(color);
+  fillRect(entity);
 }
 console.log('threadhelper.js end');

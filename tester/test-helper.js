@@ -89,4 +89,88 @@ function touchInButton(element, tx, ty) {
   return false;
 }
 
+function fillRect(entity) {
+  canvas.fillRect(entity.posx, entity.posy, entity.width, entity.height);
+}
+
+function setfillStyle(color) {
+  canvas.fillStyle = color;
+}
+
+function fillEntity(entity, color) {
+  setfillStyle(color);
+  fillRect(entity);
+}
+const objectType = {
+  '': 3
+};
+const directionEnum = {
+  'none': 0,
+  'northwest': 1,
+  'north': 2,
+  'northeast': 3,
+  'west': 4,
+  'east': 5,
+  'southwest': 6,
+  'south': 7,
+  'southeast': 8
+};
+class Entity {
+  constructor(width, height, x = 0, y = 0) {
+    this.width = width;
+    this.height = height;
+    this.posx = x;
+    this.posy = y;
+  }
+
+  collides(entity) {
+    if (this.posx < entity.posx + entity.width &&
+      this.posx + this.width > entity.posx &&
+      this.posy < entity.posy + entity.height &&
+      this.posy + this.height > entity.posy) {
+      return true;
+    }
+    return false;
+  }
+}
+class Player extends Entity {
+  constructor(width, height, x = 0, y = 0) {
+    super(width, height, x, y);
+    this.direction = directionEnum.none;
+    this.holdingTool = false;
+    this.usingTool = false;
+    this.inventory = [];
+    this.objectType = 39;
+  }
+
+  moveupleft() {
+
+  }
+  moveup() {
+
+  }
+  moveupright() {
+
+  }
+  moveleft() {
+
+  }
+  moveright() {}
+  movedownleft() {}
+  movedown() {}
+  movedownright() {}
+}
+
+class Leaf_Block {
+
+}
+
+class Wooden_Log_Block {
+
+}
+
+class Wooden_Axe {
+
+}
+
 console.log('test-helper.js end');
