@@ -24,7 +24,8 @@ const b2 = document.getElementById('btn2');
 const b3 = document.getElementById('btn3');
 const CANVAS_WIDTH = 600;
 const CANVAS_HEIGHT = 400;
-
+const WINDOW_WIDTH = window.innerWidth;
+const WINDOW_HEIGHT = window.innerHeight;
 var tx1 = 0;
 var ty1 = 0;
 var tx2 = 0;
