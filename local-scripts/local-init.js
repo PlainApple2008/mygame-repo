@@ -5,12 +5,11 @@ const canvasInit = document.createElement('canvas');
 
 canvasInit.id = 'canvas';
 canvasInit.width = window.innerWidth;
-canvasInit.height = window.innerHeight - 194;
-
+canvasInit.height = window.innerHeight - 200;//- document.getElementById('focused-content').;
 document.body.insertBefore(canvasInit, b1);
 
 console.log('canvas loaded');
-
+console.log(document.getElementById('focused-content'));
 const canvas = canvasInit.getContext('2d');
 const b2 = document.getElementById('btn2');
 const b3 = document.getElementById('btn3');
