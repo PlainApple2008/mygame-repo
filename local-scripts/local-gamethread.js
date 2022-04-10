@@ -1,4 +1,4 @@
-console.log('gamethread.js start');
+console.log('local-gamethread.js start');
 
 function run() {
   canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -14,7 +14,7 @@ function run() {
   if (tngb1) {
     player.move(2, 'w');
   }
-
+  
   if (tngb2) {
     player.move(2, 'e');
   }
@@ -51,7 +51,7 @@ function run() {
      // top leaf
      tree.width / 3, tree.height / 2, tree.posx + (tree.width / 3), tree.posy, colorEnum.green, 1]
   );
-
+  
   renderEntity(ground);
   renderEntity(tree);
   renderEntity(axe);
@@ -74,4 +74,5 @@ function run() {
 }
 
 run();
-console.log('gamethread.js end');
+
+console.log('local-gamethread.js end');

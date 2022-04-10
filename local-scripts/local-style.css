@@ -1,0 +1,17 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-size: 15px;
+  font-family: monospace;
+}
+
+.btnStyle {
+  width: 80px;
+  height: 80px;
+  background: steelblue;
+  user-select: none;
+}
+
