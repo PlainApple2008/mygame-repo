@@ -5,19 +5,34 @@ const canvasInit = document.createElement('canvas');
 
 canvasInit.id = 'canvas';
 canvasInit.width = window.innerWidth;
-canvasInit.height = window.innerHeight - 200;//- document.getElementById('focused-content').;
+canvasInit.height = window.innerHeight - 150;
+
 document.body.insertBefore(canvasInit, b1);
 
-console.log('canvas loaded');
-console.log(document.getElementById('focused-content'));
 const canvas = canvasInit.getContext('2d');
 const b2 = document.getElementById('btn2');
 const b3 = document.getElementById('btn3');
-const WINDOW_WIDTH = window.innerWidth;
-const WINDOW_HEIGHT = window.innerHeight;
-const CANVAS_WIDTH = canvasInit.width;
-const CANVAS_HEIGHT = canvasInit.height;
+var WINDOW_WIDTH = window.innerWidth;
+var WINDOW_HEIGHT = window.innerHeight;
+var CANVAS_WIDTH = canvasInit.width;
+var CANVAS_HEIGHT = canvasInit.height;
 
+window.addEventListener('resize', function() {
+  canvasInit.width = window.innerWidth;
+  canvasInit.height = window.innerHeight - 150;
+  CANVAS_WIDTH = window.innerWidth;
+  CANVAS_HEIGHT = window.innerHeight - 150;
+  WINDOW_WIDTH = window.innerWidth;
+  WINDOW_HEIGHT = window.innerHeight;
+  woodMined = Number.parseInt(sessionStorage.getItem('score'));
+});
+
+window.addEventListener('reset',function() {
+  sessionStorage.setItem('score', woodMined);
+  woodMined = Number.parseInt(sessionStorage.getItem('score'));
+});
+
+/*
 const directionEnum = {
   'none': 0,
   'northwest': 1,
@@ -34,7 +49,7 @@ const entityTypeEnum = {
   'block': 0,
   'item': 1,
   'mob': 2
-}
+}*/
 
 const colorEnum = {
   // Pure
@@ -65,7 +80,7 @@ const colorEnum = {
   dimgrey: '#A9A9A9',
   darkgrey: '#808080'
 };
-
+/*
 const styleFlagEnum = {
   'clear': 0,
   'fill': 1,
@@ -78,7 +93,7 @@ const spriteMemberEnum = {
   'y': 3,
   'c': 4,
   's': 5
-}
+}*/
 var tx1 = 0;
 var ty1 = 0;
 var tx2 = 0;
@@ -88,7 +103,7 @@ var t2a = false;
 var tngb1 = false;
 var tngb2 = false;
 var tngb3 = false;
-
+/*
 var player;
 var ground;
 var tree;
@@ -97,7 +112,7 @@ var axe;
 var woodMined;
 var treeExists;
 var playerHoldingTool;
-var playerUsingTool;
+var playerUsingTool;*/
 
 function addHandler1(element) {
   element.ontouchstart = function(ev) {
@@ -180,21 +195,32 @@ function touchInButton(element, tx, ty) {
 }
 
 function fillRect(entity) {
-  canvas.fillRect(entity.posx, entity.posy, entity.width, entity.height);
+  canvas.fillStyle = entity[4];
+  canvas.fillRect(entity[2], entity[3], entity[0], entity[1]);
 }
-
+/*
 function strokeRect(entity) {
   canvas.strokeRect(entity.posx, entity.posy, entity.width, entity.height);
 }
-
+*/
 function setfillStyle(color) {
   canvas.fillStyle = color;
 }
-
+/*
 function setstrokeStyle(color) {
   canvas.strokeStyle = color;
 }
-
+*/
+function collidesRect(rect1, rect2) {
+  if (rect1[2] < rect2[2] + rect2[0] &&
+    rect1[2] + rect1[0] > rect2[2] &&
+    rect1[3] < rect2[3] + rect2[1] &&
+    rect1[3] + rect1[1] > rect2[3]) {
+    return true;
+  }
+  return false;
+}
+/*
 function fillEntity(entity, color) {
   setfillStyle(color);
   fillRect(entity);
@@ -239,6 +265,6 @@ function renderEntity(gameEntity) {
     counter++;
   }
   setfillStyle('black');
-}
+}*/
 
 console.log('local-init.js end');

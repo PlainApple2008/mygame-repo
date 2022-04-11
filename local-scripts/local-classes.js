@@ -163,4 +163,5 @@ class Tree extends GameEntity {
     this.harvestName = 'wood';
   }
 }
+
 console.log('local-classes.js end');
