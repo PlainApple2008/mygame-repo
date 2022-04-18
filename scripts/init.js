@@ -2,34 +2,32 @@ console.log('init.js start');
 
 const b1 = document.getElementById('btn1');
 const canvasInit = document.createElement('canvas');
-
-canvasInit.id = 'canvas';
+const guiContainer = document.getElementById('gui-container');
+var guiContainerHeight = guiContainer.clientHeight;
+//alert(document.getElementById('gui-container').offsetHeight);
 canvasInit.width = window.innerWidth;
-canvasInit.height = window.innerHeight - 150;
+canvasInit.height = window.innerHeight - 137;
 
-document.body.insertBefore(canvasInit, b1);
+guiContainer.insertBefore(canvasInit, b1);
 
 const canvas = canvasInit.getContext('2d');
 const b2 = document.getElementById('btn2');
 const b3 = document.getElementById('btn3');
-var WINDOW_WIDTH = window.innerWidth;
-var WINDOW_HEIGHT = window.innerHeight;
-var CANVAS_WIDTH = canvasInit.width;
-var CANVAS_HEIGHT = canvasInit.height;
+var window_width = window.innerWidth;
+var window_height = window.innerHeight;
+var canvas_width = canvasInit.width;
+var canvas_height = canvasInit.height;
+var client_orientation = (screen.availHeight < screen.availWidth) ? 'landscape' : 'portrait';
+var refreshAllowed = false;
+const DEFAULT_CANVASWIDTH = 600;
+const DEFAULT_CANVASHEIGHT = 400;
 
 window.addEventListener('resize', function() {
+  guiContainer.removeChild(canvasInit);
   canvasInit.width = window.innerWidth;
-  canvasInit.height = window.innerHeight - 150;
-  CANVAS_WIDTH = window.innerWidth;
-  CANVAS_HEIGHT = window.innerHeight - 150;
-  WINDOW_WIDTH = window.innerWidth;
-  WINDOW_HEIGHT = window.innerHeight;
-  woodMined = Number.parseInt(sessionStorage.getItem('score'));
-});
-
-window.addEventListener('reset',function() {
-  sessionStorage.setItem('score', woodMined);
-  woodMined = Number.parseInt(sessionStorage.getItem('score'));
+  canvasInit.height = window.innerHeight - 137;
+  guiContainer.insertBefore(canvasInit, b1);
+  refreshAllowed = true;
 });
 
 /*
@@ -49,8 +47,8 @@ const entityTypeEnum = {
   'block': 0,
   'item': 1,
   'mob': 2
-}*/
-
+}
+*/
 const colorEnum = {
   // Pure
   black: "#000000",
@@ -220,6 +218,82 @@ function collidesRect(rect1, rect2) {
   }
   return false;
 }
+
+function cache(key, value) {
+  sessionStorage.setItem(key, value);
+}
+
+function store(key, value) {
+  localStorage.setItem(key, value);
+}
+
+function toStringArray(stringValue = '') {
+  var outputArray = [];
+  var outputCounter = 0;
+  var temp = '';
+  if (stringValue != '' && stringValue.startsWith(',') == false) {
+    for (let i = 0; i < stringValue.length; i++) {
+      if (stringValue[i] === ',') {
+        let t = temp.replace(',', '');
+        outputArray[outputCounter] = t;
+        temp = '';
+        outputCounter++;
+      } else if (i === (stringValue.length - 1)) {
+        outputArray[outputCounter] = temp;
+
+      } else {
+        temp += stringValue[i];
+      }
+    }
+    return outputArray;
+  } else {
+    return;
+  }
+  return outputArray;
+}
+
+function isNumber(char) {
+  for (let i = 0; i < 9; i++) {
+    if (char == i) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function toGameSquare(stringValue = '') {
+  var outputSquare = [];
+  var temp = '';
+  var outputCounter = 0;
+  var ignoreNumConversion = false;
+
+  if (stringValue != '' && stringValue.startsWith(',') == false) {
+    for (let i = 0; i < stringValue.length; i++) {
+      if (stringValue[i] === ',' && ignoreNumConversion == false) {
+        let t = temp.replace(',', '');
+        outputSquare[outputCounter] = Number.parseInt(t);
+        temp = '';
+        outputCounter++;
+      } else if (stringValue[i] === '#') {
+        ignoreNumConversion = true;
+        temp += stringValue[i];
+
+      } else {
+        temp += stringValue[i];
+        if (temp.length === 7 && ignoreNumConversion == true) {
+          outputSquare[outputCounter] = temp;
+          break;
+        }
+       // console.log('square: ' + outputSquare + '\ntemp: ' + temp + '\noutputCounter: ' + outputCounter + '\nignoreCon: ' + ignoreNumConversion);
+      }
+    }
+  } else {
+    throw 'cannot parse string starting with \',\' to gameSquare';
+    return;
+  }
+  // console.log(outputSquare);
+  return outputSquare;
+}
 /*
 function fillEntity(entity, color) {
   setfillStyle(color);
@@ -266,4 +340,5 @@ function renderEntity(gameEntity) {
   }
   setfillStyle('black');
 }*/
+
 console.log('init.js end');

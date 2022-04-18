@@ -14,3 +14,10 @@ body {
   background: steelblue;
   user-select: none;
 }
+
+.debugGuiStyle {
+  font-size: 15px;
+  height: 50px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
