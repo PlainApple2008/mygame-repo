@@ -21,3 +21,10 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.bringBackPlayerStyle {
+  user-select: none;
+  width: 80px;
+  height: 80px;
+  background: steelblue;
+}
